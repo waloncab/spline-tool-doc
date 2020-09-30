@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Spline-Tool Doc</title>
+
+        <link rel="stylesheet" href="style.css">
+
+    </head>
+
+    <body>
+
+        <iframe src="https://assetstore.unity.com/linkmaker/embed/package/165538/widget-wide?aid=1100ldXrT" 
+                style="width:600px; height:130px; border:0px;">
+        </iframe>
+
+        <ol>
+            <li><a href="#introduction">A lightning introduction</a></li>
+            <li><a href="#frame">So what makes a Bézier Curve?</a></li>
+            <li><a href="#explanation">The mathematics of Bézier curves</a></li>
+            <li><a href="#control">Controlling Bézier curvatures</a></li>
+        </ol>
+
+        <section id="introduction">
+
+            <h2>TOOLBAR</h2>
+
+            <p>
+            In order to create a new Spline -> go to the unity toolbar -> S-Lines/Spline.
+            A new game object will be created with their correspondent scripts.
+            </p>
+
+        </section>
+
+        <section id="frame">
+
+        <h2>SPLINE FRAME</h2>
+
+        <p>
+        This is the main component for editing and extending the spline. In order to edit the spline click on its 
+        correspondent nodes and drag them wherever you need them to be, this way you can create any path you want.
+        To make it easier for editing, the only way to add new nodes, is to duplicate the selected one, click the 
+        button inside its editor (each node is a different gameObject).
+        </p>
+
+        <h2>Toolbar</h2>
+
+        <table>
+            <tr>
+                <td><</td>
+                <td>Select the first node</td>
+            </tr>
+            <tr>
+                <td>></td>
+                <td>Select the last node</td>
+            </tr>
+            <tr>
+                <td>R</td>
+                <td>Reset the spline</td>
+            </tr>
+            <tr>
+                <td>+</td>
+                <td>Duplicate the last node</td>
+            </tr>
+        </table> 
+
+
+
+        <ul>
+            <li>You can select the nodes:</li>
+                -> directly in the spline
+                -> in the spline_frame inspector
+                -> by opening the gameObject that contains the node
+            <li>Use the editor to create the spline path that you want</li>
+            <li>Use the inspector to change the node mode </li>
+                -> {Free, Aligned, Mirrored, Auto, Poly}
+            <li>Use the {Duplicate} button to duplicate the current node</li>
+                -> its the only way of extending the spline
+                -> 
+            <li>Use the {Remove} button to remove the current node </li>
+                -> dont delete the gameObject directly: it can cause problems;
+        </ul>
+
+
+        
+        <h2>SPLINE NODE</h2>
+    
+            <p>
+            This is the main component for editing and extending the spline. In order to edit the spline click on its 
+            correspondent nodes and drag them wherever you need them to be, this way you can create any path you want.
+            To make it easier for editing, the only way to add new nodes, is to duplicate the selected one, click the 
+            button inside its editor (each node is a different gameObject).
+            </p>
+
+            <table>
+                <tr>
+                    <td>Free</td>
+                    <td>Leaf nodes can be drag anywhere</td>
+                </tr>
+                <tr>
+                    <td>Aligned</td>
+                    <td>Leaf nodes are enforceb by their tangents</td>
+                </tr>
+                <tr>
+                    <td>Aligned</td>
+                    <td>Leaf nodes are enforced by tangents and same distance to center</td>
+                </tr>
+                <tr>
+                    <td>Auto</td>
+                    <td>Leaf nodes are placed automatically and cannot be drag along</td>
+                </tr>
+
+                <tr>
+                    <td>Poly</td>
+                    <td>Leaf nodes disappear to make polygonal lines</td>
+                </tr>
+            </table> 
+
+        </section>
+
+        <h2>EXTENSIONS</h2>
+
+        <p>
+        Within the Spline_Frame component you can create new beahviour for the line, such as drawers or traversals.
+        In order to add a new extension component select the one you need in the "extend" view in the inspector.
+        </p>
+
+        <table>
+            <tr>
+                <th>Extension</th>
+                <th>Beahviour</th>
+            </tr>
+            <tr>
+                <td>Traverse</td>
+                <td>...</td>
+            </tr>
+            <tr>
+                <td>Draw</td>
+                <td>...</td>
+            </tr>
+            <tr>
+                <td>Mesh</td>
+                <td>...</td>
+                </tr>
+        </table> 
+
+
+        <h2>DRAW</h2>
+
+        <p>
+        Draws a trail render along the line. You can modfiy any of the values the trail render includes
+        and they will be visible when the game starts. This component get updated automatically if you modfiy
+        the line during update mode.
+        </p>
+
+        <h2>TRAVERSE</h2>
+
+        <p>
+        The Travesal component contains the iteration in the spline. Use it to move
+        a gameObject along the curve, but to do it in game mode (automatically) you need to extend it with a Walker.
+        The distance {parameter that describes the iteration state} represents the acumalated distance
+        from the start of the spline.
+        </p>
+
+        <p>
+        Walker makes the Travesal work in game mode, and Handles.
+        </p>
+
+        <ul>
+            <li>Specify the direction that you want</li>
+                -> Forward
+                -> Backward
+            <li> Use the following modes for different movement</li>
+                -> Loop
+                -> Ping-Pong
+                -> Stop
+        </ul>
+
+    </body>
+
+</html>
