@@ -1,7 +1,9 @@
 <!DOCTYPE html>
+
 <html>
 
     <head>
+
         <title>Spline-Tool Doc</title>
 
         <link rel="stylesheet" href="style.css">
@@ -10,171 +12,387 @@
 
     <body>
 
-        <iframe src="https://assetstore.unity.com/linkmaker/embed/package/165538/widget-wide?aid=1100ldXrT" 
-                style="width:600px; height:130px; border:0px;">
-        </iframe>
+        <div class="content">
+            <!-- Page content -->
 
-        <ol>
-            <li><a href="#introduction">A lightning introduction</a></li>
-            <li><a href="#frame">So what makes a Bézier Curve?</a></li>
-            <li><a href="#explanation">The mathematics of Bézier curves</a></li>
-            <li><a href="#control">Controlling Bézier curvatures</a></li>
-        </ol>
+             <div class="banner"
+             style="width:900px; margin-left: auto; margin-right: auto;">
 
-        <section id="introduction">
+            <iframe src="https://assetstore.unity.com/linkmaker/embed/package/165538/widget-wide?aid=1100ldXrT" 
+                    style="width:600px; height:130px; border:0px; ">
+            </iframe>
 
-            <h2>TOOLBAR</h2>
+             </div>
+
+            <h2>Table of Contents</h2>
+
+            <ol>
+                <li><a href="#introduction">Indtroduction</a></li>
+                <li><a href="#frame">Spline</a></li>
+                <li><a href="#node">Node</a></li>
+                <li><a href="#draw">Draw</a></li>
+                <li><a href="#traverse">Traverse</a></li>
+                <li><a href="#mesh">Mesh</a></li>
+            </ol>
+
+            <section id="introduction">
+
+                <h2>CREATE</h2>
+
+                <p>
+                In order to create a new Spline -> go to the unity toolbar -> S-Lines/Spline.
+                A new game object will be created with their correspondent scripts.
+                </p>
+
+            </section>
+
+            <section id="frame">
+
+                <h2>SPLINE FRAME</h2>
+
+                <p>
+                This is the main component for editing and extending the spline. In order to edit the spline click on its 
+                correspondent nodes and drag them wherever you need them to be, this way you can create any path you want.
+                To make it easier for editing, the only way to add new nodes, is to duplicate the selected one, click the 
+                button inside its editor (each node is a different gameObject).
+                </p>
+
+                <h3>Editing</h3>
+
+                <p>
+                On the scene view the spline is renderer with a thin curve line and the nodes are represented as white dots.
+                You can select the nodes:
+                </p>
+
+                <ul>
+                    <li>directly in the spline</li>
+                    <li>in the spline_frame inspector</li>
+                    <li>by opening the gameObject that contains the node</li>
+                </ul>
+
+                <p>Use the regular unity transform tool to drag the nodes anywhere you need them.</p>
+
+                <h3>Toolbar</h3>
+
+                <p>
+                    The Toolbar at the top of the component includes some of the basic editing options. 
+                </p>
+
+                <table>
+                    <tr>
+                        <td><</td>
+                        <td>Select the first node</td>
+                    </tr>
+                    <tr>
+                        <td>></td>
+                        <td>Select the last node</td>
+                    </tr>
+                    <tr>
+                        <td>R</td>
+                        <td>Reset the spline</td>
+                    </tr>
+                    <tr>
+                        <td>+</td>
+                        <td>Duplicate the last node</td>
+                    </tr>
+                </table>
+                
+                <h3>Closed</h3>
+
+                <p>
+                The spline can be either oper or closed. Many times closed path are needed, and when this is the case,
+                the rest of the componnets that depend directly on the spline shape will be notified in their beahviour.
+                </p>
+
+                <h3>Node List</h3>
+
+                <p>
+                The inspector allows the view of all of the child nodes that conform the spline.
+                Any of them can be selected from here and the current GameObject selection will be modified.
+                </p>
+
+                <h3>Events</h3>
+
+                <p>
+                There are a few interesitng events we might want to interact with such as when the shape of the spline is changed.
+                The tool supports the unity event property and allows a easy integration with the user scripts. 
+                </p>
+
+                <h3>Extensions</h3>
+
+                <p>
+                Within the Spline_Frame component you can create new beahviour for the line, such as drawers or traversals.
+                In order to add a new extension component select the one you need on the "extend" view in the inspector.
+                </p>
+
+                <table>
+                    <tr>
+                        <th>Extension</th>
+                        <th>Beahviour</th>
+                    </tr>
+                    <tr>
+                        <td><a href="#traverse">Traverse</td>
+                        <td>Traverse the spline and keep GameObjects at a fixed state in the spline</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#draw">Draw</td>
+                        <td>Render a Trail Render Component alnong the spline you created</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#mesh">Mesh</td>
+                        <td>Render different meshes along the spline</td>
+                        </tr>
+                </table> 
+                
+            </section>
+
+            <section id="node">
+
+            
+            <h2>SPLINE NODE</h2>
+        
+                <p>
+                    You can modify each individual node of the spline. There are a few intereesting options in each of them.
+                </p>
+
+                <strong>Features</strong>
+
+                <h3>Toolbar</h3>
+
+                <p>
+                The Toolbar at the top of the component includes some of the basic editing options. 
+                Along with the node selection tools creates a nice user expirence.
+                </p>
+
+                <table>
+                    <tr>
+                        <td><</td>
+                        <td>Select the previous node</td>
+                    </tr>
+                    <tr>
+                        <td>></td>
+                        <td>Select the next node</td>
+                    </tr>
+                    <tr>
+                        <td>-</td>
+                        <td>Removes the current node</td>
+                    </tr>
+                    <tr>
+                        <td>+</td>
+                        <td>Duplicate the current node</td>
+                    </tr>
+                </table> 
+
+                <h3>Mode</h3>
+
+                <p> By changing the node mode many different styles of spline can be achived. Create any shape needed: </p>
+
+                <table>
+                    <tr>
+                        <td>Free</td>
+                        <td>Leaf nodes can be drag anywhere</td>
+                    </tr>
+                    <tr>
+                        <td>Aligned</td>
+                        <td>Leaf nodes are enforceb by their tangents</td>
+                    </tr>
+                    <tr>
+                        <td>Aligned</td>
+                        <td>Leaf nodes are enforced by tangents and same distance to center</td>
+                    </tr>
+                    <tr>
+                        <td>Auto</td>
+                        <td>Leaf nodes are placed automatically and cannot be drag along</td>
+                    </tr>
+
+                    <tr>
+                        <td>Poly</td>
+                        <td>Leaf nodes disappear to make polygonal lines</td>
+                    </tr>
+                </table>
+
+                <p> 
+                    Use the {Duplicate} button to duplicate the current node, its the only way of extending the spline, and the most conmfortble one.<br> 
+                    Use the {Remove} button to remove the current node, dont delete the gameObject directly: it can cause problems; 
+                </p>
+
+            </section>
+
+            <section id="draw">
+
+                <h2>DRAW</h2>
+
+                <p>
+                Draws a trail render along the line. You can modfiy any of the values the trail render includes
+                and they will be visible when the game starts. This component get updated automatically if you modfiy
+                the line during update mode.
+                </p>
+
+                <p>
+                    Draws a trail render along the line. You can modfiy any of the values the trail render includes
+                    and they will be visible when the game starts. This component get updated automatically if you modfiy
+                    the line during update mode.
+                </p>
+
+                <h4>Segment Length</h4>
+
+                <p>This parameter is critical for the final mesh. Depending on the segment distance the mesh ...</p>
+
+            </section>
+
+            <section id="traverse">
+
+            <h2>TRAVERSE</h2>
 
             <p>
-            In order to create a new Spline -> go to the unity toolbar -> S-Lines/Spline.
-            A new game object will be created with their correspondent scripts.
+            The Travesal component contains the iteration in the spline. 
+            Use it to move a gameObject along the curve, but to do it in game mode (automatically) you need to extend it with a Walker.
             </p>
 
-        </section>
+            <h3>Distance</h3>
 
-        <section id="frame">
+            <p>The distance {parameter that describes the iteration state} represents the acumalated distance
+            from the start of the spline.</p>
 
-        <h2>SPLINE FRAME</h2>
+            <h3>Update</h3>
 
-        <p>
-        This is the main component for editing and extending the spline. In order to edit the spline click on its 
-        correspondent nodes and drag them wherever you need them to be, this way you can create any path you want.
-        To make it easier for editing, the only way to add new nodes, is to duplicate the selected one, click the 
-        button inside its editor (each node is a different gameObject).
-        </p>
+            <h3>Handler</h3>
 
-        <h2>Toolbar</h2>
+            <h3>Events</h3>
 
-        <table>
-            <tr>
-                <td><</td>
-                <td>Select the first node</td>
-            </tr>
-            <tr>
-                <td>></td>
-                <td>Select the last node</td>
-            </tr>
-            <tr>
-                <td>R</td>
-                <td>Reset the spline</td>
-            </tr>
-            <tr>
-                <td>+</td>
-                <td>Duplicate the last node</td>
-            </tr>
-        </table> 
+            <h3>Extensions</h3>
 
+            <h4>Walker</h4>
 
-
-        <ul>
-            <li>You can select the nodes:</li>
-                -> directly in the spline
-                -> in the spline_frame inspector
-                -> by opening the gameObject that contains the node
-            <li>Use the editor to create the spline path that you want</li>
-            <li>Use the inspector to change the node mode </li>
-                -> {Free, Aligned, Mirrored, Auto, Poly}
-            <li>Use the {Duplicate} button to duplicate the current node</li>
-                -> its the only way of extending the spline
-                -> 
-            <li>Use the {Remove} button to remove the current node </li>
-                -> dont delete the gameObject directly: it can cause problems;
-        </ul>
-
-
-        
-        <h2>SPLINE NODE</h2>
-    
             <p>
-            This is the main component for editing and extending the spline. In order to edit the spline click on its 
-            correspondent nodes and drag them wherever you need them to be, this way you can create any path you want.
-            To make it easier for editing, the only way to add new nodes, is to duplicate the selected one, click the 
-            button inside its editor (each node is a different gameObject).
+            Walker makes the Travesal work in game mode, and Handles. Moves the Traversal component based on a few pareameters.
+            Use it whenever a GameObject needs to follow the spline path, the Traversal by itself just represents the iteration state.
+            </p>
+
+            <p>Choose the direction that you want</p>
+
+            <table>
+                <tr>
+                    <th>Forward</th>
+                    <th>Moves the Traversal in Forward direction</th>
+                </tr>
+                <tr>
+                    <td>Backward</td>
+                    <td>Moves the Traversal in Backward direction</td>
+                </tr>
+            </table>
+
+            <p>Use the following modes for different movement behaviour</p>
+
+            <table>
+                <tr>
+                    <td>Loop</td>
+                    <td>Traversal keeps going throw a closed spline</td>
+                </tr>
+                <tr>
+                    <td>Ping-Pong</td>
+                    <td>On reach the end of the spline it changes the direction</td>
+                </tr>
+                <tr>
+                    <td>Stop</td>
+                    <td>It does nothing when the traversal reaches the start or the end</td>
+                </tr>
+            </table> 
+
+            <h4>Interpolation</h4>
+
+            <p>
+            There are a bunch of interpolation componnets you can attach to the spline. 
+            They change their effect when the Traversal moves along the spline.
             </p>
 
             <table>
                 <tr>
-                    <td>Free</td>
-                    <td>Leaf nodes can be drag anywhere</td>
+                    <td>Scale</td>
+                    <td>Traversal keeps going throw a closed spline</td>
                 </tr>
                 <tr>
-                    <td>Aligned</td>
-                    <td>Leaf nodes are enforceb by their tangents</td>
+                    <td>Rotate</td>
+                    <td>On reach the end of the spline it changes the direction</td>
                 </tr>
                 <tr>
-                    <td>Aligned</td>
-                    <td>Leaf nodes are enforced by tangents and same distance to center</td>
+                    <td>Color</td>
+                    <td>It does nothing when the traversal reaches the start or the end</td>
                 </tr>
                 <tr>
-                    <td>Auto</td>
-                    <td>Leaf nodes are placed automatically and cannot be drag along</td>
+                    <td>Fade</td>
+                    <td>It does nothing when the traversal reaches the start or the end</td>
                 </tr>
-
-                <tr>
-                    <td>Poly</td>
-                    <td>Leaf nodes disappear to make polygonal lines</td>
-                </tr>
-            </table> 
+            </table>
 
         </section>
 
-        <h2>EXTENSIONS</h2>
+        <section id="mesh">
 
-        <p>
-        Within the Spline_Frame component you can create new beahviour for the line, such as drawers or traversals.
-        In order to add a new extension component select the one you need in the "extend" view in the inspector.
-        </p>
+            <h2>MESH</h2>
 
-        <table>
-            <tr>
-                <th>Extension</th>
-                <th>Beahviour</th>
-            </tr>
-            <tr>
-                <td>Traverse</td>
-                <td>...</td>
-            </tr>
-            <tr>
-                <td>Draw</td>
-                <td>...</td>
-            </tr>
-            <tr>
-                <td>Mesh</td>
-                <td>...</td>
+            <p>This component must be extended throw a spline_frame.</p>
+
+            <p>
+            There are some ways of rendering a mesh along the spline. It is one of the most interesting features of the tool.
+            But also the one that takes more resources, use when need it considering the optimization of the game.
+            </p>
+
+            <h3>Line Mesh</h3>
+
+            <p>
+            The line mesh component allows you to chose some shapes to render. 
+            The following sections explain each of its parameters.
+            </p>
+
+            <h4>Segment Length</h4>
+
+            <p>  
+            This parameter is critical for the final mesh. Depending on the segment distance the mesh will be lighter or heavier.
+            Low poly style scenes might be content with a bigger segment distance than more accurate mesh scenes.
+            </p>
+
+            <h4>Auto</h4>
+
+            <p>  
+            The mesh is by default updated whenever the spline is changed. Sometimes this behaviour is not what you might want
+            since the spline is very large and the mesh can take a little longer to keep up to the spline shape.
+            However all mesh operations are executed in parallel (multithreaded)
+            </p>
+
+            <h4>Extend</h4>
+
+            <p>
+            The way you select a concrete shape is by extending the Line Mesh component. Once selected click on "Extend",
+            another script is added with concrete parameters for the selected mesh.
+            </p>
+
+            <table>
+                <tr>
+                    <td>Base</td>
+                    <td>...</td>
                 </tr>
-        </table> 
+                <tr>
+                    <td>Rect</td>
+                    <td>...</td>
+                </tr>
+                <tr>
+                    <td>Tube</td>
+                    <td>...</td>
+                </tr>
+            </table>
 
+            <h4>Optimization</h4>
 
-        <h2>DRAW</h2>
+            <h3>Shape Base</h3>
 
-        <p>
-        Draws a trail render along the line. You can modfiy any of the values the trail render includes
-        and they will be visible when the game starts. This component get updated automatically if you modfiy
-        the line during update mode.
-        </p>
+            <h3>Shape Rect</h3>
 
-        <h2>TRAVERSE</h2>
+            <h3>Shape Tube</h3>
 
-        <p>
-        The Travesal component contains the iteration in the spline. Use it to move
-        a gameObject along the curve, but to do it in game mode (automatically) you need to extend it with a Walker.
-        The distance {parameter that describes the iteration state} represents the acumalated distance
-        from the start of the spline.
-        </p>
+        </section>
 
-        <p>
-        Walker makes the Travesal work in game mode, and Handles.
-        </p>
-
-        <ul>
-            <li>Specify the direction that you want</li>
-                -> Forward
-                -> Backward
-            <li> Use the following modes for different movement</li>
-                -> Loop
-                -> Ping-Pong
-                -> Stop
-        </ul>
+    </div>
 
     </body>
 
