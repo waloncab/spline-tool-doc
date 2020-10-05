@@ -4,26 +4,29 @@
 
     <head>
 
+        <meta charset="utf-8">
+		<meta name="keywords" content="Walon Cab">
+		<meta name="description" content="Walon Cab">
+		<meta name="Author" content="Walon Cab">
+
         <title>Spline-Tool Doc</title>
 
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/body.css">
+        <link rel="stylesheet" href="css/table.css">
+        <link rel="stylesheet" href="css/form.css">
+        
+        <script src="js/include.js"></script> 
 
     </head>
 
     <body>
 
         <div class="content">
-            <!-- Page content -->
-
-             <div class="banner"
-             style="width:900px; margin-left: auto; margin-right: auto;">
 
             <iframe src="https://assetstore.unity.com/linkmaker/embed/package/165538/widget-wide?aid=1100ldXrT" 
-                    style="width:600px; height:130px; border:0px; ">
+                    style="width:600px; height:130px; border:0px;">
             </iframe>
-
-             </div>
-
+            
             <h2>Table of Contents</h2>
 
             <ol>
@@ -34,6 +37,10 @@
                 <li><a href="#traverse">Traverse</a></li>
                 <li><a href="#mesh">Mesh</a></li>
             </ol>
+
+            <section id="versions">
+
+            </section>
 
             <section id="introduction">
 
@@ -55,6 +62,16 @@
                 correspondent nodes and drag them wherever you need them to be, this way you can create any path you want.
                 To make it easier for editing, the only way to add new nodes, is to duplicate the selected one, click the 
                 button inside its editor (each node is a different gameObject).
+                </p>
+
+                <h3>Architecture</h3>
+
+                <p>
+                    It is interesting to know that each nod is contained in a different gameObject. 
+                    They are connected in a linked list structure for fast iteration and easy CRUD {Create, Read, Update, Delete} operations.
+                    This spline architecture allows to create simple script extensions. 
+                    For example a single node could be moved at runtime in a wavy oscilation movement 
+                    (a script is needed to achive this behaviour).
                 </p>
 
                 <h3>Editing</h3>
@@ -79,6 +96,10 @@
                 </p>
 
                 <table>
+                    <tr>
+                        <th>Button</th>
+                        <th>Action</th>
+                    </tr>
                     <tr>
                         <td><</td>
                         <td>Select the first node</td>
@@ -128,7 +149,7 @@
                 <table>
                     <tr>
                         <th>Extension</th>
-                        <th>Beahviour</th>
+                        <th>Behaviour</th>
                     </tr>
                     <tr>
                         <td><a href="#traverse">Traverse</td>
@@ -141,7 +162,7 @@
                     <tr>
                         <td><a href="#mesh">Mesh</td>
                         <td>Render different meshes along the spline</td>
-                        </tr>
+                    </tr>
                 </table> 
                 
             </section>
@@ -155,8 +176,6 @@
                     You can modify each individual node of the spline. There are a few intereesting options in each of them.
                 </p>
 
-                <strong>Features</strong>
-
                 <h3>Toolbar</h3>
 
                 <p>
@@ -165,6 +184,10 @@
                 </p>
 
                 <table>
+                    <tr>
+                        <th>Button</th>
+                        <th>Action</th>
+                    </tr>
                     <tr>
                         <td><</td>
                         <td>Select the previous node</td>
@@ -189,6 +212,10 @@
 
                 <table>
                     <tr>
+                        <th>Mode</th>
+                        <th>Behaviour</th>
+                    </tr>
+                    <tr>
                         <td>Free</td>
                         <td>Leaf nodes can be drag anywhere</td>
                     </tr>
@@ -197,7 +224,7 @@
                         <td>Leaf nodes are enforceb by their tangents</td>
                     </tr>
                     <tr>
-                        <td>Aligned</td>
+                        <td>Mirrored</td>
                         <td>Leaf nodes are enforced by tangents and same distance to center</td>
                     </tr>
                     <tr>
@@ -256,9 +283,41 @@
 
             <h3>Update</h3>
 
+            <p>
+            It is important to understant that the current position and rotation are calculated based on the current distance.
+            Since the distance is the main variable representing the iteration state, 
+            to calculate or not the according postion and rotation is decision of the user.
+            This way the traversal can be optimized precisaly.
+            </p>
+
             <h3>Handler</h3>
 
+            <p>
+            There are a few buttons on the inspector to make a conmfortable user experience, 
+            either modifying the distance or using these buttons the traversal state will be changed.
+            </p>
+
             <h3>Events</h3>
+
+            <p>
+                There are a few interesitng events we might want to interact with.
+                Drag your script methods to the corresponding unity event properties.
+            </p>
+
+            <table>
+                <tr>
+                    <th>Event</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>On Reach Start</td>
+                    <td>Calls the integrated method when traversal reaches the start</td>
+                </tr>
+                <tr>
+                    <td>On Reach End</td>
+                    <td>Calls the integrated method when traversal reaches the end</td>
+                </tr>
+            </table>
 
             <h3>Extensions</h3>
 
@@ -273,8 +332,12 @@
 
             <table>
                 <tr>
-                    <th>Forward</th>
-                    <th>Moves the Traversal in Forward direction</th>
+                    <th>Direction</th>
+                    <th>Movement</th>
+                </tr>
+                <tr>
+                    <td>Forward</td>
+                    <td>Moves the Traversal in Forward direction</td>
                 </tr>
                 <tr>
                     <td>Backward</td>
@@ -285,6 +348,10 @@
             <p>Use the following modes for different movement behaviour</p>
 
             <table>
+                <tr>
+                    <th>Mode</th>
+                    <th>Behaviour</th>
+                </tr>
                 <tr>
                     <td>Loop</td>
                     <td>Traversal keeps going throw a closed spline</td>
@@ -308,91 +375,200 @@
 
             <table>
                 <tr>
+                    <th>Effect</th>
+                    <th>Behaviour</th>
+                </tr>
+                <tr>
                     <td>Scale</td>
                     <td>Traversal keeps going throw a closed spline</td>
                 </tr>
                 <tr>
                     <td>Rotate</td>
-                    <td>On reach the end of the spline it changes the direction</td>
+                    <td>Rotates from one quaternion to another</td>
                 </tr>
                 <tr>
                     <td>Color</td>
-                    <td>It does nothing when the traversal reaches the start or the end</td>
+                    <td>Changes from one color to another</td>
                 </tr>
                 <tr>
                     <td>Fade</td>
-                    <td>It does nothing when the traversal reaches the start or the end</td>
+                    <td>Modifies the alpha throw the movement</td>
                 </tr>
             </table>
 
-        </section>
+            </section>
 
-        <section id="mesh">
+            <section id="mesh">
 
-            <h2>MESH</h2>
+                <h2>MESH</h2>
 
-            <p>This component must be extended throw a spline_frame.</p>
+                <p>This component must be extended throw a spline_frame.</p>
 
-            <p>
-            There are some ways of rendering a mesh along the spline. It is one of the most interesting features of the tool.
-            But also the one that takes more resources, use when need it considering the optimization of the game.
-            </p>
+                <p>
+                There are some ways of rendering a mesh along the spline. It is one of the most interesting features of the tool.
+                But also the one that takes more resources, use when need it considering the optimization of the game.
+                </p>
 
-            <h3>Line Mesh</h3>
+                <h3>Line Mesh</h3>
 
-            <p>
-            The line mesh component allows you to chose some shapes to render. 
-            The following sections explain each of its parameters.
-            </p>
+                <p>
+                The line mesh component allows you to chose some shapes to render. 
+                The following sections explain each of its parameters.
+                </p>
 
-            <h4>Segment Length</h4>
+                <h4>Segment Length</h4>
 
-            <p>  
-            This parameter is critical for the final mesh. Depending on the segment distance the mesh will be lighter or heavier.
-            Low poly style scenes might be content with a bigger segment distance than more accurate mesh scenes.
-            </p>
+                <p>  
+                This parameter is critical for the final mesh. Depending on the segment distance the mesh will be lighter or heavier.
+                Low poly style scenes might be content with a bigger segment distance than more accurate mesh scenes.
+                </p>
 
-            <h4>Auto</h4>
+                <h4>Auto</h4>
 
-            <p>  
-            The mesh is by default updated whenever the spline is changed. Sometimes this behaviour is not what you might want
-            since the spline is very large and the mesh can take a little longer to keep up to the spline shape.
-            However all mesh operations are executed in parallel (multithreaded)
-            </p>
+                <p>  
+                The mesh is by default updated whenever the spline is changed. Sometimes this behaviour is not what you might want
+                since the spline is very large and the mesh can take a little longer to keep up to the spline shape.
+                However all mesh operations are executed in parallel (multithreaded)
+                </p>
 
-            <h4>Extend</h4>
+                <h4>Extend</h4>
 
-            <p>
-            The way you select a concrete shape is by extending the Line Mesh component. Once selected click on "Extend",
-            another script is added with concrete parameters for the selected mesh.
-            </p>
+                <p>
+                The way you select a concrete shape is by extending the Line Mesh component. Once selected click on "Extend",
+                another script is added with concrete parameters for the selected mesh.
+                </p>
 
-            <table>
-                <tr>
-                    <td>Base</td>
-                    <td>...</td>
-                </tr>
-                <tr>
-                    <td>Rect</td>
-                    <td>...</td>
-                </tr>
-                <tr>
-                    <td>Tube</td>
-                    <td>...</td>
-                </tr>
-            </table>
+                <ol>
+                    <li><a href="#shape_base">Base</a></li>
+                    <li><a href="#shape_rect">Recht</a></li>
+                    <li><a href="#shape_tube">Tube</a></li>
+                </ol>
 
-            <h4>Optimization</h4>
+                <h4>Optimization</h4>
 
-            <h3>Shape Base</h3>
+                <p>
+                As it is mentioned before, the mesh rendering part of tool is design to run in parallel.
+                This parallel design allows you to edit the mesh in the unity editor without lag.
+                However if the spline is very large you may want to separete the spline editing from the mesh rendering process.
+                If this is the case simply uncheck the "auto" toggle and update the mesh when need it.
+                </p>
 
-            <h3>Shape Rect</h3>
+                <h3>Shape Base</h3>
 
-            <h3>Shape Tube</h3>
+                <p>
+                    A rectangle type shape that could represent the basement surface of the terrail. 
+                    Change the with and heigth and decide between some effects to make it look more appealing.
 
-        </section>
+                </p>
 
-    </div>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>Width</td>
+                            <td>The width of the mesh</td>
+                        </tr>
+                        <tr>
+                            <td>Height</td>
+                            <td>The height of the mesh</td>
+                        </tr>
+                        <tr>
+                            <td>Material</td>
+                            <td>The material applyed to the mesh</td>
+                        </tr>
+                        <tr>
+                            <td>Physics</td>
+                            <td>The physics material applied</td>
+                        </tr>
+                    </table>
+
+                <h3>Shape Rect</h3>
+
+                <p>
+                    A rectangle type shape that places its base into the plane y = 0 {the ground} automatically.
+                    Very useful for different structures such as walls, corridors, platforms...
+                </p>
+
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>Width</td>
+                            <td>The width of the mesh</td>
+                        </tr>
+                        <tr>
+                            <td>Material</td>
+                            <td>The material applyed to the mesh</td>
+                        </tr>
+                        <tr>
+                            <td>Physics</td>
+                            <td>The physics material applied</td>
+                        </tr>
+                    </table>
+
+                <h3>Shape Tube</h3>
+
+                <p>
+                    A simple and yet very useful tube shape.
+                    Render the spline path with this simple mesh. 
+                    Optimize it for your needs by changing the number of segments that conform the circle.
+                </p>
+
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>Radius</td>
+                            <td>The radiuis of the tube</td>
+                        </tr>
+                        <tr>
+                            <td>Segments</td>
+                            <td>The segemetns of the tube</td>
+                        </tr>
+                        <tr>
+                            <td>Material</td>
+                            <td>The material applyed to the mesh</td>
+                        </tr>
+                        <tr>
+                            <td>Physics</td>
+                            <td>The physics material applied</td>
+                        </tr>
+                    </table>
+
+            </section>
+
+            <section id="contact">
+
+                <h2>Contact Q/A</h2>
+
+                <form action="action_page.php">
+  
+                    <label for="fname">Name</label>
+                    <input type="text" id="name" name="firstname" placeholder="Your name">
+                
+                    <label for="lname">Email</label>
+                    <input type="text" id="name" name="lastname" placeholder="Your e-mail">
+                
+                    <label for="subject">Subject</label>
+                    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+                
+                    <input type="submit" value="Submit">
+                
+                  </form>
+
+            </section>
+
+        </div>
+
+        <script>
+            includeHTML();
+        </script>
 
     </body>
 
