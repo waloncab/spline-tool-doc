@@ -14,8 +14,6 @@
         <link rel="stylesheet" href="css/body.css">
         <link rel="stylesheet" href="css/table.css">
         <link rel="stylesheet" href="css/form.css">
-        
-        <script src="js/include.js"></script> 
 
     </head>
 
@@ -30,7 +28,7 @@
             <h2>Table of Contents</h2>
 
             <ol>
-                <li><a href="#introduction">Indtroduction</a></li>
+                <li><a href="#create">Introduction</a></li>
                 <li><a href="#frame">Spline</a></li>
                 <li><a href="#node">Node</a></li>
                 <li><a href="#draw">Draw</a></li>
@@ -44,7 +42,11 @@
 
             <section id="introduction">
 
-                <h2>CREATE</h2>
+            </section>
+
+            <section id="create">
+
+                <h2>Create</h2>
 
                 <p>
                 In order to create a new Spline -> go to the unity toolbar -> S-Lines/Spline.
@@ -55,7 +57,7 @@
 
             <section id="frame">
 
-                <h2>SPLINE FRAME</h2>
+                <h2>Spline Frame</h2>
 
                 <p>
                 This is the main component for editing and extending the spline. In order to edit the spline click on its 
@@ -63,6 +65,8 @@
                 To make it easier for editing, the only way to add new nodes, is to duplicate the selected one, click the 
                 button inside its editor (each node is a different gameObject).
                 </p>
+
+                <img src="img/spline_frame_base.png" alt="Spline Base" class="center">
 
                 <h3>Architecture</h3>
 
@@ -169,12 +173,13 @@
 
             <section id="node">
 
-            
-            <h2>SPLINE NODE</h2>
+                <h2>Spline Node</h2>
         
                 <p>
                     You can modify each individual node of the spline. There are a few intereesting options in each of them.
                 </p>
+
+                <img src="img/spline_node_base.png" alt="Spline Node" class="center">
 
                 <h3>Toolbar</h3>
 
@@ -247,7 +252,7 @@
 
             <section id="draw">
 
-                <h2>DRAW</h2>
+                <h2>Draw</h2>
 
                 <p>
                 Draws a trail render along the line. You can modfiy any of the values the trail render includes
@@ -269,12 +274,14 @@
 
             <section id="traverse">
 
-            <h2>TRAVERSE</h2>
+            <h2>Traverse</h2>
 
             <p>
             The Travesal component contains the iteration in the spline. 
             Use it to move a gameObject along the curve, but to do it in game mode (automatically) you need to extend it with a Walker.
             </p>
+
+            <img src="img/traversal_base.png" alt="Traversal Base" class="center">
 
             <h3>Distance</h3>
 
@@ -400,7 +407,7 @@
 
             <section id="mesh">
 
-                <h2>MESH</h2>
+                <h2>Mesh</h2>
 
                 <p>This component must be extended throw a spline_frame.</p>
 
@@ -408,6 +415,8 @@
                 There are some ways of rendering a mesh along the spline. It is one of the most interesting features of the tool.
                 But also the one that takes more resources, use when need it considering the optimization of the game.
                 </p>
+
+                <img src="img/mesh_base.png" alt="Mesh Base" class="center">
 
                 <h3>Line Mesh</h3>
 
@@ -440,8 +449,10 @@
 
                 <ol>
                     <li><a href="#shape_base">Base</a></li>
-                    <li><a href="#shape_rect">Recht</a></li>
+                    <li><a href="#shape_rect">Rect</a></li>
                     <li><a href="#shape_tube">Tube</a></li>
+                    <li><a href="#shape_box">Box</a></li>
+                    <li><a href="#shape_custom">Custom</a></li>
                 </ol>
 
                 <h4>Optimization</h4>
@@ -461,28 +472,32 @@
 
                 </p>
 
-                    <table>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                        <tr>
-                            <td>Width</td>
-                            <td>The width of the mesh</td>
-                        </tr>
-                        <tr>
-                            <td>Height</td>
-                            <td>The height of the mesh</td>
-                        </tr>
-                        <tr>
-                            <td>Material</td>
-                            <td>The material applyed to the mesh</td>
-                        </tr>
-                        <tr>
-                            <td>Physics</td>
-                            <td>The physics material applied</td>
-                        </tr>
-                    </table>
+                <table>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Width</td>
+                        <td>The width of the mesh</td>
+                    </tr>
+                    <tr>
+                        <td>Height</td>
+                        <td>The height of the mesh</td>
+                    </tr>
+                    </tr>
+                        <td>Pivot</td>
+                        <td>The pivot for the shape. {Left, Center, Right}</td>
+                    </tr>
+                    <tr>
+                        <td>Material</td>
+                        <td>The material applyed to the mesh</td>
+                    </tr>
+                    <tr>
+                        <td>Physics</td>
+                        <td>The physics material applied</td>
+                    </tr>
+                </table>
 
                 <h3>Shape Rect</h3>
 
@@ -491,24 +506,27 @@
                     Very useful for different structures such as walls, corridors, platforms...
                 </p>
 
-                    <table>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                        <tr>
-                            <td>Width</td>
-                            <td>The width of the mesh</td>
-                        </tr>
-                        <tr>
-                            <td>Material</td>
-                            <td>The material applyed to the mesh</td>
-                        </tr>
-                        <tr>
-                            <td>Physics</td>
-                            <td>The physics material applied</td>
-                        </tr>
-                    </table>
+                <table>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Width</td>
+                        <td>The width of the mesh</td>
+                    </tr>
+                        <td>Pivot</td>
+                        <td>The pivot for the shape. {Left, Center, Right}</td>
+                    </tr>
+                    <tr>
+                        <td>Material</td>
+                        <td>The material applyed to the mesh</td>
+                    </tr>
+                    <tr>
+                        <td>Physics</td>
+                        <td>The physics material applied</td>
+                    </tr>
+                </table>
 
                 <h3>Shape Tube</h3>
 
@@ -540,6 +558,83 @@
                             <td>The physics material applied</td>
                         </tr>
                     </table>
+
+                <h3>Shape Box</h3>
+
+                <p>
+                    A simple and yet very useful box shape.
+                    One of the most basic shapes you can use along the spline.
+                </p>
+
+                <table>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Width</td>
+                        <td>The width of the mesh</td>
+                    </tr>
+                    <tr>
+                        <td>Height</td>
+                        <td>The height of the mesh</td>
+                    </tr>
+                    <tr>
+                        <td>Pivot</td>
+                        <td>The pivot for the shape. {Top, Bottom, Left, Right}</td>
+                    </tr>
+                    <tr>
+                        <td>Material</td>
+                        <td>The material applyed to the mesh</td>
+                    </tr>
+                    <tr>
+                        <td>Physics</td>
+                        <td>The physics material applied</td>
+                    </tr>
+                </table>
+
+                <h3>Shape Custom</h3>
+
+                <p>
+                    Create your own custom shape by editing a simple 2D template. 
+                    This shape willbe rendered like any other along the spline. 
+                    If any of the previous ones fit your needs you could always have this option.
+                </p>
+
+                <p>
+                    Use the simple editor GameObject list to drag some GameObject with the transform that represent your desired shape. 
+                    You can change the pivot for rendering the mesh according to your neeeds.
+                </p>
+
+                <table>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Points List</td>
+                        <td>The 2D points that represent the shape</td>
+                    </tr>
+                    <tr>
+                        <td>Pivot</td>
+                        <td>The pivot for the shape. By using a pivot you apply a basic transformation</td>
+                    </tr>
+                    <tr>
+                        <td>Material</td>
+                        <td>The material applyed to the mesh</td>
+                    </tr>
+                    <tr>
+                        <td>Physics</td>
+                        <td>The physics material applied</td>
+                    </tr>
+                </table>
+
+                <h3>Coctel Shapes</h3>
+
+                <p>
+                    Use the simple editor GameObject list to drag some GameObject with the transform that represent your desired shape. 
+                    You can change the pivot for rendering the mesh according to your neeeds.
+                </p>
 
             </section>
 
