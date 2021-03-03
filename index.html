@@ -4,12 +4,13 @@
 
     <head>
 
-        <meta charset="utf-8">
-		<meta name="keywords" content="Walon Cab">
-		<meta name="description" content="Walon Cab">
+		<meta charset="utf-8">
+		<meta name="keywords" content="spline tool documentation unity 3d asset plugin">
+		<meta name="description" 
+		      content="Spline Tool documentation web page for unity 3d engine.">
 		<meta name="Author" content="Walon Cab">
 
-        <title>Spline-Tool Doc</title>
+		<title>Spline Tool Documentation | Spline Unity Asset</title>
 
         <link rel="stylesheet" href="css/body.css">
         <link rel="stylesheet" href="css/table.css">
@@ -34,6 +35,7 @@
                 <li><a href="#draw">Draw</a></li>
                 <li><a href="#traverse">Traverse</a></li>
                 <li><a href="#mesh">Mesh</a></li>
+                <li><a href="#tools">Tools</a></li>
             </ol>
 
             <section id="versions">
@@ -425,26 +427,61 @@
                 The following sections explain each of its parameters.
                 </p>
 
-                <h4>Segment Length</h4>
-
-                <p>  
-                This parameter is critical for the final mesh. Depending on the segment distance the mesh will be lighter or heavier.
-                Low poly style scenes might be content with a bigger segment distance than more accurate mesh scenes.
-                </p>
-
-                <h4>Auto</h4>
-
-                <p>  
-                The mesh is by default updated whenever the spline is changed. Sometimes this behaviour is not what you might want
-                since the spline is very large and the mesh can take a little longer to keep up to the spline shape.
-                However all mesh operations are executed in parallel (multithreaded)
-                </p>
-
-                <h4>Extend</h4>
+                <h3>LOD</h3>
 
                 <p>
-                The way you select a concrete shape is by extending the Line Mesh component. Once selected click on "Extend",
-                another script is added with concrete parameters for the selected mesh.
+                    The level of detail, is determined by the segments length parameter. 
+                    Decide a good value for it since part of the optimization relies on it.
+                    Depending on the segment distance the mesh will be lighter or heavier.
+                    Low poly style scenes might be content with a bigger segment distance than more accurate mesh scenes.
+                </p>
+
+                <h3>Collider</h3>
+
+                <p>
+
+                You can enable and disable collider options for each mesh that you create.
+                That way better optimization is achived, for example if a surface is going to be used
+                on top of the rect mesh, a good way to keep resources minimum, is not to enable the 
+                mesh in the las one.
+
+                </p>
+
+                <h3>Sides</h3>
+                
+                <p>
+                    You can enable and disable them, front or end. it could be times when you just
+                    dont need them since they are not going to be seen.
+                </p>
+
+                <h3>Material</h3>
+                   
+                <p>
+                    Use the material that best fits your needs. There is no need to combine materials
+                    into the same mesh, this architecure allows you to create different meshes so you 
+                    can customize each one in detail.
+                </p>
+
+                <h3>Update</h3>
+
+                <p>  
+                    The mesh is by default updated whenever the spline is changed. Sometimes this behaviour is not what you might want
+                    since the spline is very large and the mesh can take a little longer to keep up to the spline shape.
+                    However all mesh operations are executed in parallel (multithreaded)
+                </p>
+
+                <p>
+                    As it is mentioned before, the mesh rendering part of tool is design to run in parallel.
+                    This parallel design allows you to edit the mesh in the unity editor without lag.
+                    However if the spline is very large you may want to separete the spline editing from the mesh rendering process.
+                    If this is the case simply uncheck the "auto" toggle and update the mesh when need it.
+                </p>
+
+                <h3>Extend</h3>
+
+                <p>
+                    The way you select a concrete shape is by extending the Line Mesh component. Once selected click on "Extend",
+                    another script is added with concrete parameters for the selected mesh.
                 </p>
 
                 <ol>
@@ -455,16 +492,7 @@
                     <li><a href="#shape_custom">Custom</a></li>
                 </ol>
 
-                <h4>Optimization</h4>
-
-                <p>
-                As it is mentioned before, the mesh rendering part of tool is design to run in parallel.
-                This parallel design allows you to edit the mesh in the unity editor without lag.
-                However if the spline is very large you may want to separete the spline editing from the mesh rendering process.
-                If this is the case simply uncheck the "auto" toggle and update the mesh when need it.
-                </p>
-
-                <h3>Shape Base</h3>
+                <h4>Shape Base</h4>
 
                 <p>
                     A rectangle type shape that could represent the basement surface of the terrail. 
@@ -489,17 +517,9 @@
                         <td>Pivot</td>
                         <td>The pivot for the shape. {Left, Center, Right}</td>
                     </tr>
-                    <tr>
-                        <td>Material</td>
-                        <td>The material applyed to the mesh</td>
-                    </tr>
-                    <tr>
-                        <td>Physics</td>
-                        <td>The physics material applied</td>
-                    </tr>
                 </table>
 
-                <h3>Shape Rect</h3>
+                <h4>Shape Rect</h4>
 
                 <p>
                     A rectangle type shape that places its base into the plane y = 0 {the ground} automatically.
@@ -518,17 +538,9 @@
                         <td>Pivot</td>
                         <td>The pivot for the shape. {Left, Center, Right}</td>
                     </tr>
-                    <tr>
-                        <td>Material</td>
-                        <td>The material applyed to the mesh</td>
-                    </tr>
-                    <tr>
-                        <td>Physics</td>
-                        <td>The physics material applied</td>
-                    </tr>
                 </table>
 
-                <h3>Shape Tube</h3>
+                <h4>Shape Tube</h4>
 
                 <p>
                     A simple and yet very useful tube shape.
@@ -549,17 +561,9 @@
                             <td>Segments</td>
                             <td>The segemetns of the tube</td>
                         </tr>
-                        <tr>
-                            <td>Material</td>
-                            <td>The material applyed to the mesh</td>
-                        </tr>
-                        <tr>
-                            <td>Physics</td>
-                            <td>The physics material applied</td>
-                        </tr>
                     </table>
 
-                <h3>Shape Box</h3>
+                <h4>Shape Box</h4>
 
                 <p>
                     A simple and yet very useful box shape.
@@ -583,17 +587,9 @@
                         <td>Pivot</td>
                         <td>The pivot for the shape. {Top, Bottom, Left, Right}</td>
                     </tr>
-                    <tr>
-                        <td>Material</td>
-                        <td>The material applyed to the mesh</td>
-                    </tr>
-                    <tr>
-                        <td>Physics</td>
-                        <td>The physics material applied</td>
-                    </tr>
                 </table>
 
-                <h3>Shape Custom</h3>
+                <h4>Shape Custom</h4>
 
                 <p>
                     Create your own custom shape by editing a simple 2D template. 
@@ -619,22 +615,26 @@
                         <td>Pivot</td>
                         <td>The pivot for the shape. By using a pivot you apply a basic transformation</td>
                     </tr>
-                    <tr>
-                        <td>Material</td>
-                        <td>The material applyed to the mesh</td>
-                    </tr>
-                    <tr>
-                        <td>Physics</td>
-                        <td>The physics material applied</td>
-                    </tr>
                 </table>
 
-                <h3>Coctel Shapes</h3>
+                <h4>Coctel Shapes</h4>
 
                 <p>
                     Use the simple editor GameObject list to drag some GameObject with the transform that represent your desired shape. 
                     You can change the pivot for rendering the mesh according to your neeeds.
                 </p>
+
+            </section>
+
+            <section id="tools"></section>
+
+                <h2>Table of Contents</h2>
+
+                <ol>
+                    <li><a href="#create">Spline Wall</a></li>
+                    <li><a href="#frame">Polyline Wall</a></li>
+                    <li><a href="#frame">2D Terrain Creator</a></li>
+                </ol>
 
             </section>
 
